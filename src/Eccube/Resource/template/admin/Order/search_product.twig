@@ -30,8 +30,58 @@
                     $sele2.append(option);
                 }
             }
+        } else {
+
+            // 規格1の選択肢
+            var classcat_id1 = $('#category' + product_id + ' select[name=classcategory_id1] option:selected').text();
+
+            {% set productClasses = [] %}
+            {% for Product in Products %}
+                {% set productClasses = productClasses|merge(Product.productClasses) %}
+            {% endfor %}
+
+            var productClasses = {
+                {% for ProductClass in productClasses %}
+                    "{{ ProductClass.product.id ~ "-" ~ ProductClass.classCategory1|escape('js') }}": {{ ProductClass.productStock.stock|json_encode|raw }}{% if loop.last == false %}, {% endif %}
+                {% endfor %}
+            };
+            var stock = productClasses[product_id + '-' + classcat_id1];
+            console.log(productClasses)
+            console.log(product_id)
+            console.log(classcat_id1)
+            if (stock != null) {
+                $('#stock' + product_id).text(stock);
+            } else {
+                $('#stock' + product_id).text('無制限');
+            }
+
         }
     }
+    // 規格2が選択された際に在庫数を表示
+    function fnSetClassCategory(select, product_id) {
+        // 規格1の選択肢
+        var classcat_id1 = $('#category' + product_id + ' select[name=classcategory_id1] option:selected').text();
+        // 規格2の選択肢
+        var classcat_id2 = $('#category' + product_id + ' select[name=classcategory_id2] option:selected').text();
+
+        {% set productClasses = [] %}
+        {% for Product in Products %}
+            {% set productClasses = productClasses|merge(Product.productClasses) %}
+        {% endfor %}
+
+        var productClasses = {
+            {% for ProductClass in productClasses %}
+                "{{ ProductClass.product.id ~ "-" ~ ProductClass.classCategory1 ~ "-" ~ ProductClass.classCategory2|escape('js') }}": {{ ProductClass.productStock.stock|json_encode|raw }}{% if loop.last == false %}, {% endif %}
+            {% endfor %}
+        };
+        var stock = productClasses[product_id + '-' + classcat_id1 + '-' + classcat_id2];
+        if (stock != null) {
+            $('#stock' + product_id).text(stock);
+        } else {
+            $('#stock' + product_id).text('無制限');
+        }
+
+    };
     // 受注明細行を追加する.
     // 受注明細行のレコード数カウンタ(order_details_count)は, edit.twig側で定義している.
     function fnAddOrderDetail($row, product_id) {
@@ -140,18 +190,30 @@
                     <td>
                         {{ Product.name }}
                         {% if Product.hasProductClass %}
-                            <span><br/>{{ Product.code_min }}～{{ Product.code_max }}</span>
+                            {% if Product.code_min ==  Product.code_max %}
+                                <span><br/>{{ Product.code_min }}</span>
+                            {% else %}
+                                <span><br/>{{ Product.code_min }}～{{ Product.code_max }}</span>
+                            {% endif %}
                         {% else %}
                             <span><br/>{{ Product.code_min }}</span>
                         {% endif %}
                     </td>
-                    <td>
+                    <td id="category{{ Product.id }}">
                         {% if form.classcategory_id1 is defined %}
                             {{ form_label(form.classcategory_id1) }}：{{ form_widget(form.classcategory_id1, { attr : { 'onchange' : "fnSetClassCategory2(this," ~ Product.id ~ ")" } } ) }}
                             {% if form.classcategory_id2 is defined %}
-                                <br/>{{ form_label(form.classcategory_id2) }}：{{ form_widget(form.classcategory_id2, {'id': ''}) }}
+                                <br/>{{ form_label(form.classcategory_id2) }}：{{ form_widget(form.classcategory_id2, {'id': '', attr : { 'onchange' : "fnSetClassCategory(this," ~ Product.id ~ ")" } } ) }}
                             {% endif %}
                         {% endif %}
+                    </td>
+                    <td>
+                        在庫数 : <span id="stock{{ Product.id }}">
+                        {% if Product.hasProductClass %}
+                        {% else %}
+                            {{ Product.productClasses[0].stock_unlimited ? '無制限' : Product.productClasses[0].productStock.stock|number_format }}
+                        {% endif %}
+                        </span>
                     </td>
                     <td class="text-right">
                         <button onclick="fnAddOrderDetail($(this).parent().parent(), {{ Product.id }})" type="button" class="btn btn-default btn-sm" name="mode" value="modal">
