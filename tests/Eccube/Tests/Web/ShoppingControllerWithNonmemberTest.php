@@ -126,10 +126,9 @@ class ShoppingControllerWithNonmemberTest extends AbstractWebTestCase
 
     public function testNonmemberWithCustomerLogin()
     {
-        $client = $this->createClient();
-
         // ユーザーが会員ログイン済みの場合
         $this->logIn();
+        $client = $this->client;
         $this->scenarioCartIn($client);
 
         $crawler = $client->request('GET', $this->app->path('shopping_nonmember'));

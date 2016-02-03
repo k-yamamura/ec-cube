@@ -41,7 +41,8 @@ class ShoppingControllerTest extends AbstractWebTestCase
 
     public function testRoutingShoppingLogin()
     {
-        $client = $this->createClient();
+        $client = $this->client;
+
         $crawler = $client->request('GET', '/shopping/login');
         $this->assertTrue($client->getResponse()->isRedirect($this->app->url('cart')));
     }
@@ -81,7 +82,8 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
+
         // カート画面
         $this->scenarioCartIn($client);
 
@@ -127,7 +129,8 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
+
         // カート画面
         $this->scenarioCartIn($client);
 
@@ -150,7 +153,7 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
 
         // カート画面
         $this->scenarioCartIn($client);
@@ -187,7 +190,8 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
+
         // カート画面
         $this->scenarioCartIn($client);
 
@@ -226,7 +230,7 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
 
         // カート画面
         $this->scenarioCartIn($client);
@@ -263,7 +267,7 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
 
         // カート画面
         $this->scenarioCartIn($client);
@@ -301,7 +305,8 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
+
         // カート画面
         $this->scenarioCartIn($client);
         // 確認画面
@@ -323,7 +328,8 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
+
         // カート画面
         $this->scenarioCartIn($client);
         // 確認画面
@@ -354,7 +360,7 @@ class ShoppingControllerTest extends AbstractWebTestCase
     {
         $faker = $this->getFaker();
         $Customer = $this->logIn();
-        $client = $this->createClient();
+        $client = $this->client;
 
         // カート画面
         $this->scenarioCartIn($client);
