@@ -93,10 +93,14 @@ final class EccubeEvents
      * Admin/Customer/CustomerController
      */
     // index
+    const ADMIN_CUSTOMER_INDEX_INITIALIZE = 'admin.customer.index.initialize';
+    const ADMIN_CUSTOMER_INDEX_SEARCH = 'admin.customer.index.search';
 
     // resend
+    const ADMIN_CUSTOMER_RESEND_COMPLETE = 'admin.customer.resend.complete';
 
     // delete
+    const ADMIN_CUSTOMER_DELETE_COMPLETE = 'admin.customer.delete.complete';
 
     // export
 
@@ -105,36 +109,60 @@ final class EccubeEvents
      * Admin/Customer/CustomerEditController
      */
     // index
+    const ADMIN_CUSTOMER_EDIT_INDEX_INITIALIZE = 'admin.customer.edit.index.initialize';
+    const ADMIN_CUSTOMER_EDIT_INDEX_COMPLETE = 'admin.customer.edit.index.complete';
 
 
     /**
      * Admin/Order/EditController
      */
     // index
+    const ADMIN_ORDER_EDIT_INDEX_INITIALIZE = 'admin.order.edit.index.initialize';
+    const ADMIN_ORDER_EDIT_INDEX_COMPLETE = 'admin.order.edit.index.complete';
 
     // searchCustomer
+    const ADMIN_ORDER_EDIT_SEARCH_CUSTOMER_INITIALIZE = 'admin.order.edit.search.customer.initialize';
+    const ADMIN_ORDER_EDIT_SEARCH_CUSTOMER_SEARCH = 'admin.order.edit.search.customer.search';
+    const ADMIN_ORDER_EDIT_SEARCH_CUSTOMER_COMPLETE = 'admin.order.edit.search.customer.complete';
 
     // searchCustomerById
+    const ADMIN_ORDER_EDIT_SEARCH_CUSTOMER_BY_ID_INITIALIZE = 'admin.order.edit.search.customer.by.id.initialize';
+    const ADMIN_ORDER_EDIT_SEARCH_CUSTOMER_BY_ID_COMPLETE = 'admin.order.edit.search.customer.by.id.complete';
 
     // searchProduct
+    const ADMIN_ORDER_EDIT_SEARCH_PRODUCT_INITIALIZE = 'admin.order.edit.search.product.initialize';
+    const ADMIN_ORDER_EDIT_SEARCH_PRODUCT_SEARCH = 'admin.order.edit.search.product.search';
+    const ADMIN_ORDER_EDIT_SEARCH_PRODUCT_COMPLETE = 'admin.order.edit.search.product.complete';
 
 
     /**
      * Admin/Order/MailController
      */
     // index
+    const ADMIN_ORDER_MAIL_INDEX_INITIALIZE = 'admin.order.mail.index.initialize';
+    const ADMIN_ORDER_MAIL_INDEX_CHANGE = 'admin.order.mail.index.change';
+    const ADMIN_ORDER_MAIL_INDEX_CONFIRM = 'admin.order.mail.index.confirm';
+    const ADMIN_ORDER_MAIL_INDEX_COMPLETE = 'admin.order.mail.index.complete';
 
     // view
+    const ADMIN_ORDER_MAIL_VIEW_COMPLETE = 'admin.order.mail.view.complete';
 
     // mailAll
+    const ADMIN_ORDER_MAIL_MAIL_ALL_INITIALIZE = 'admin.order.mail.mail.all.initialize';
+    const ADMIN_ORDER_MAIL_MAIL_ALL_CHANGE = 'admin.order.mail.mail.all.change';
+    const ADMIN_ORDER_MAIL_MAIL_ALL_CONFIRM = 'admin.order.mail.mail.all.confirm';
+    const ADMIN_ORDER_MAIL_MAIL_ALL_COMPLETE = 'admin.order.mail.mail.all.complete';
 
 
     /**
      * Admin/Order/OrderController
      */
     // index
+    const ADMIN_ORDER_INDEX_INITIALIZE = 'admin.order.index.initialize';
+    const ADMIN_ORDER_INDEX_SEARCH = 'admin.order.index.search';
 
     // delete
+    const ADMIN_ORDER_DELETE_COMPLETE = 'admin.order.delete.complete';
 
     // exportOrder
 
@@ -145,8 +173,11 @@ final class EccubeEvents
      * Admin/Product/CategoryController
      */
     // index
+    const ADMIN_PRODUCT_CATEGORY_INDEX_INITIALIZE = 'admin.product.category.index.initialize';
+    const ADMIN_PRODUCT_CATEGORY_INDEX_COMPLETE = 'admin.product.category.index.complete';
 
     // delete
+    const ADMIN_PRODUCT_CATEGORY_DELETE_COMPLETE = 'admin.product.category.delete.complete';
 
     // export
 
@@ -155,16 +186,22 @@ final class EccubeEvents
      * Admin/Product/ClassCategoryController
      */
     // index
+    const ADMIN_PRODUCT_CLASS_CATEGORY_INDEX_INITIALIZE = 'admin.product.class.category.index.initialize';
+    const ADMIN_PRODUCT_CLASS_CATEGORY_INDEX_COMPLETE = 'admin.product.class.category.index.complete';
 
     // delete
+    const ADMIN_PRODUCT_CLASS_CATEGORY_DELETE_COMPLETE = 'admin.product.class.category.delete.complete';
 
 
     /**
      * Admin/Product/ClassNameController
      */
     // index
+    const ADMIN_PRODUCT_CLASS_NAME_INDEX_INITIALIZE = 'admin.product.class.name.index.initialize';
+    const ADMIN_PRODUCT_CLASS_NAME_INDEX_COMPLETE = 'admin.product.class.name.index.complete';
 
     // delete
+    const ADMIN_PRODUCT_CLASS_NAME_DELETE_COMPLETE = 'admin.product.class.name.delete.complete';
 
 
     /**
@@ -181,8 +218,14 @@ final class EccubeEvents
      * Admin/Product/ProductClassController
      */
     // index
+    const ADMIN_PRODUCT_PRODUCT_CLASS_INDEX_INITIALIZE = 'admin.product.product.class.index.initialize';
+    const ADMIN_PRODUCT_PRODUCT_CLASS_INDEX_CLASSES = 'admin.product.product.class.index.classes';
 
     // edit
+    const ADMIN_PRODUCT_PRODUCT_CLASS_EDIT_INITIALIZE = 'admin.product.product.class.edit.initialize';
+    const ADMIN_PRODUCT_PRODUCT_CLASS_EDIT_COMPLETE = 'admin.product.product.class.edit.complete';
+    const ADMIN_PRODUCT_PRODUCT_CLASS_EDIT_UPDATE = 'admin.product.product.class.edit.update';
+    const ADMIN_PRODUCT_PRODUCT_CLASS_EDIT_DELETE = 'admin.product.product.class.edit.delete';
 
 
     /**
@@ -193,16 +236,21 @@ final class EccubeEvents
     const ADMIN_PRODUCT_INDEX_SEARCH = 'admin.product.index.search';
 
     // addImage
+    const ADMIN_PRODUCT_ADD_IMAGE_COMPLETE = 'admin.product.add.image.complete';
 
     // edit
     const ADMIN_PRODUCT_EDIT_INITIALIZE = 'admin.product.edit.initialize';
+    const ADMIN_PRODUCT_EDIT_SEARCH = 'admin.product.edit.search';
     const ADMIN_PRODUCT_EDIT_COMPLETE = 'admin.product.edit.complete';
 
     // delete
+    const ADMIN_PRODUCT_DELETE_COMPLETE = 'admin.product.delete.complete';
 
     // copy
+    const ADMIN_PRODUCT_COPY_COMPLETE = 'admin.product.copy.complete';
 
     // display
+    const ADMIN_PRODUCT_DISPLAY_COMPLETE = 'admin.product.display.complete';
 
     // export
 
@@ -211,63 +259,78 @@ final class EccubeEvents
      * Admin/Setting/Shop/CsvController
      */
     // index
-
+    const ADMIN_CSV_INDEX_INITIALIZE = 'admin.csv.index.initialize';
+    const ADMIN_CSV_INDEX_COMPLETE = 'admin.csv.index.complete';
 
     /**
      * Admin/Setting/Shop/CustomerAgreementController
      */
     // index
-
+    const ADMIN_CUSTOMER_AGREEMENT_INDEX_INITIALIZE = 'admin.customer.agreement.index.initialize';
+    const ADMIN_CUSTOMER_AGREEMENT_INDEX_COMPLETE = 'admin.customer.agreement.index.complete';
 
     /**
      * Admin/Setting/Shop/DeliveryController
      */
     // index
-
+    const ADMIN_DELIVERY_INDEX_INITIALIZE = 'admin.delivery.index.initialize';
+    const ADMIN_DELIVERY_INDEX_COMPLETE = 'admin.delivery.index.complete';
     // edit
-
+    const ADMIN_DELIVERY_EDIT_INITIALIZE = 'admin.delivery.edit.initialize';
+    const ADMIN_DELIVERY_EDIT_COMPLETE = 'admin.delivery.edit.complete';
     // delete
-
+    const ADMIN_DELIVERY_DELETE_INITIALIZE = 'admin.delivery.delete.initialize';
+    const ADMIN_DELIVERY_DELETE_COMPLETE = 'admin.delivery.delete.complete';
 
     /**
      * Admin/Setting/Shop/MailController
      */
     // index
-
+    const ADMIN_MAIL_INDEX_INITIALIZE = 'admin.mail.index.initialize';
+    const ADMIN_MAIL_INDEX_COMPLETE = 'admin.mail.index.complete';
 
     /**
      * Admin/Setting/Shop/PaymentController
      */
     // index
-
+    const ADMIN_PAYMENT_INDEX_INITIALIZE = 'admin.payment.index.initialize';
+    const ADMIN_PAYMENT_INDEX_COMPLETE = 'admin.payment.index.complete';
     // edit
-
+    const ADMIN_PAYMENT_EDIT_INITIALIZE = 'admin.payment.edit.initialize';
+    const ADMIN_PAYMENT_EDIT_COMPLETE = 'admin.payment.edit.complete';
     // imageAdd
-
+    const ADMIN_PAYMENT_IMAGE_ADD_INITIALIZE = 'admin.payment.image.add.initialize';
+    const ADMIN_PAYMENT_IMAGE_ADD_COMPLETE = 'admin.payment.image.add.complete';
     // delete
-
+    const ADMIN_PAYMENT_DELETE_INITIALIZE = 'admin.payment.delete.initialize';
+    const ADMIN_PAYMENT_DELETE_COMPLETE = 'admin.payment.delete.complete';
 
     /**
      * Admin/Setting/Shop/ShopController
      */
     // index
-
+    const ADMIN_SHOP_INDEX_INITIALIZE = 'admin.shop.index.initialize';
+    const ADMIN_SHOP_INDEX_COMPLETE = 'admin.shop.index.complete';
 
     /**
      * Admin/Setting/Shop/TaxRuleController
      */
     // index
-
+    const ADMIN_TAX_RULE_INDEX_INITIALIZE = 'admin.tax.rule.index.initialize';
+    const ADMIN_TAX_RULE_INDEX_COMPLETE = 'admin.tax.rule.index.complete';
     // delete
-
+    const ADMIN_TAX_RULE_DELETE_INITIALIZE = 'admin.tax.rule.delete.initialize';
+    const ADMIN_TAX_RULE_DELETE_COMPLETE = 'admin.tax.rule.delete.complete';
     // editParameter
-
+    const ADMIN_TAX_RULE_EDIT_PARAMETER_INITIALIZE = 'admin.tax.rule.edit.parameter.initialize';
+    const ADMIN_TAX_RULE_EDIT_PARAMETER_COMPLETE = 'admin.tax.rule.edit.parameter.complete';
 
     /**
      * Admin/Setting/Shop/TradelawController
      */
     // index
-
+    const ADMIN_TRADE_LAW_INDEX_INITIALIZE = 'admin.trade.law.index.initialize';
+    const ADMIN_TRADE_LAW_INDEX_COMPLETE = 'admin.trade.law.index.complete';
 
     /**
      * Admin/Setting/System/AuthorityController
@@ -318,78 +381,107 @@ final class EccubeEvents
      * Block/SearchProductController
      */
     // index
-
+    const FRONT_BLOCK_SEARCH_PRODUCT_INDEX_INITIALIZE = 'front.block.search.product.index.initialize';
 
     /**
      * Mypage/ChangeController
      */
     // index
-
+    const FRONT_MYPAGE_CHANGE_INDEX_INITIALIZE = 'front.mypage.change.index.initialize';
+    const FRONT_MYPAGE_CHANGE_INDEX_COMPLETE = 'front.mypage.change.index.complete';
 
     /**
      * Mypage/DeliveryController
      */
     // edit
+    const FRONT_MYPAGE_DELIVERY_EDIT_INITIALIZE = 'front.mypage.delivery.edit.initialize';
+    const FRONT_MYPAGE_DELIVERY_EDIT_COMPLETE = 'front.mypage.delivery.edit.complete';
 
     // delete
-
+    const FRONT_MYPAGE_DELIVERY_DELETE_INITIALIZE = 'front.mypage.delete.initialize';
+    const FRONT_MYPAGE_DELIVERY_DELETE_COMPLETE = 'front.mypage.delete.complete';
 
     /**
      * Mypage/MypageController
      */
     // login
+    const FROMT_MYPAGE_MYPAGE_LOGIN_INITIALIZE = 'front.mypage.mypage.login.initialize';
 
     // index
+    const FROMT_MYPAGE_MYPAGE_INDEX_SEARCH = 'front.mypage.mypage.index.search';
 
     // history
+    const FRONT_MYPAGE_MYPAGE_HISTORY_INITIALIZE = 'front.mypage.mypage.history.initialize';
 
     // order
+    const FRONT_MYPAGE_MYPAGE_ORDER_INITIALIZE = 'front.mypage.mypage.order.initialize';
+    const FRONT_MYPAGE_MYPAGE_ORDER_COMPLETE = 'front.mypage.mypage.order.complete';
 
     // favorite
+    const FRONT_MYPAGE_MYPAGE_FAVORITE_SEARCH = 'front.mypage.mypage.favorite.search';
 
     // delete
-
+    const FRONT_MYPAGE_MYPAGE_DELETE_INITIALIZE = 'front.mypage.mypage.delete.initialize';
+    const FRONT_MYPAGE_MYPAGE_DELETE_COMPLETE = 'front.mypage.mypage.delete.complete';
 
     /**
      * Mypage/WithdrawController
      */
     // index
+    const FRONT_MYPAGE_WITHDRAW_INDEX_INITIALIZE = 'front.mypage.withdraw.index.initialize';
+    const FRONT_MYPAGE_WITHDRAW_INDEX_COMPLETE = 'front.mypage.withdraw.index.complete';
 
     /**
      * CartController
      */
     // index
-
+    const FRONT_CART_INDEX_INITIALIZE = 'front.cart.index.initialize';
+    const FRONT_CART_INDEX_COMPLETE = 'front.cart.index.complete';
     // add
+    const FRONT_CART_ADD_INITIALIZE = 'front.cart.add.initialize';
+    const FRONT_CART_ADD_COMPLETE = 'front.cart.add.complete';
+    const FRONT_CART_ADD_EXCEPTION = 'front.cart.add.exception';
 
     // up
+    const FRONT_CART_UP_INITIALIZE = 'front.cart.up.initialize';
+    const FRONT_CART_UP_COMPLETE = 'front.cart.up.complete';
+    const FRONT_CART_UP_EXCEPTION = 'front.cart.up.exception';
 
     // down
+    const FRONT_CART_DOWN_INITIALIZE = 'front.cart.down.initialize';
+    const FRONT_CART_DOWN_COMPLETE = 'front.cart.down.complete';
+    const FRONT_CART_DOWN_EXCEPTION = 'front.cart.down.exception';
 
     // remove
-
+    const FRONT_CART_REMOVE_INITIALIZE = 'front.cart.remove.initialize';
+    const FRONT_CART_REMOVE_COMPLETE = 'front.cart.remove.complete';
 
     /**
      * ContactController
      */
     // index
-
+    const FRONT_CONTACT_INDEX_INITIALIZE = 'front.contact.index.initialize';
+    const FRONT_CONTACT_INDEX_COMPLETE = 'front.contact.index.complete';
 
     /**
      * EntryController
      */
     // index
-
+    const FRONT_ENTRY_INDEX_INITIALIZE = 'front.entry.index.initialize';
+    const FRONT_ENTRY_INDEX_COMPLETE = 'front.entry.index.complete';
     // activate
-
+    const FRONT_ENTRY_ACTIVATE_INITIALIZE = 'front.entry.activate.initialize';
+    const FRONT_ENTRY_ACTIVATE_COMPLETE = 'front.entry.activate.complete';
 
     /**
      * ForgotController
      */
     // index
-
+    const FRONT_FORGOT_INDEX_INITIALIZE = 'front.forgot.index.initialize';
+    const FRONT_FORGOT_INDEX_COMPLETE = 'front.forgot.index.complete';
     // reset
-
+    const FRONT_FORGOT_RESET_INITIALIZE = 'front.reset.index.initialize';
+    const FRONT_FORGOT_RESET_COMPLETE = 'front.reset.index.complete';
 
     /**
      * ProductController
