@@ -24,6 +24,8 @@
 
 namespace Eccube\Tests\Web\Admin\Content;
 
+use Eccube\Entity\Master\DeviceType;
+use Eccube\Entity\PageLayout;
 use Eccube\Tests\Web\Admin\AbstractAdminWebTestCase;
 
 class PageControllerTest extends AbstractAdminWebTestCase
