@@ -23,9 +23,9 @@
 
 namespace Eccube;
 
+use Doctrine\DBAL\Types\Type;
 use Eccube\Application\ApplicationTrait;
 use Eccube\Common\Constant;
-use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Request;
@@ -441,6 +441,11 @@ class Application extends ApplicationTrait
                 'default' => $this['config']['database']
         )));
         $this->register(new \Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider());
+
+        // UTCで保存
+        // @see http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/cookbook/working-with-datetime.html
+        Type::overrideType('datetime', 'Eccube\Doctrine\DBAL\Types\UTCDateTimeType');
+        Type::overrideType('datetimetz', 'Eccube\Doctrine\DBAL\Types\UTCDateTimeType');
 
         // プラグインのmetadata定義を合わせて行う.
         $pluginBasePath = __DIR__.'/../../app/Plugin';
