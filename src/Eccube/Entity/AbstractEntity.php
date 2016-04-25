@@ -92,8 +92,8 @@ abstract class AbstractEntity implements \ArrayAccess
      * プロパティの値を連想配列で返します.
      * DBを更新する場合などで, 連想配列の値を取得したい場合に使用します.
      *
-     * @param ReflectionClass $parentClass 親のクラス. 本メソッドの内部的に使用します.
      * @param array $excludeAttribute 除外したいフィールド名の配列
+     * @param \ReflectionClass $parentClass 親のクラス. 本メソッドの内部的に使用します.
      * @return array 連想配列のプロパティの値
      */
     public function toArray(array $excludeAttribute = array(), \ReflectionClass $parentClass = null)
@@ -141,4 +141,31 @@ abstract class AbstractEntity implements \ArrayAccess
         $this->setPropertiesFromArray($srcObject->toArray($excludeAttribute), $excludeAttribute);
         return $this;
     }
+
+    /**
+     * Api用にフォーマットした連想配列を返します.
+     *
+     * @param array                 $excludeAttribute
+     * @param \ReflectionClass|null $parentClass
+     * @return array
+     */
+    public function toArrayApiFormat(array $excludeAttribute = array(), \ReflectionClass $parentClass = null)
+    {
+        $results = self::toArray($excludeAttribute, $parentClass);
+        $arrResults = array();
+        foreach ($results as $key => $value) {
+
+            // 日付はRFC3339形式で返す
+            if ($value instanceof \DateTime) {
+                $value = $value->format(DATE_RFC3339);
+            }
+
+            $arrResults[$key] = $value;
+        }
+
+        return $arrResults;
+
+    }
+
+
 }
