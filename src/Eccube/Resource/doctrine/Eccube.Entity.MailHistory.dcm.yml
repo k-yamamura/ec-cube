@@ -5,21 +5,22 @@ Eccube\Entity\MailHistory:
     id:
         id:
             type: integer
-            nullable: false
-            unsigned: false
-            id: true
             column: send_id
             generator:
                 strategy: AUTO
+            options:
+                unsigned: true
     fields:
         send_date:
             type: datetime
             nullable: true
         subject:
-            type: text
+            type: string
+            length: 200
             nullable: true
         mail_body:
-            type: text
+            type: string
+            length: 2000
             nullable: true
     manyToOne:
         Order:
@@ -28,16 +29,21 @@ Eccube\Entity\MailHistory:
             joinColumn:
                 name: order_id
                 referencedColumnName: order_id
-                nullable: false
+                options:
+                    unsigned: true
         MailTemplate:
             targetEntity: Eccube\Entity\MailTemplate
             joinColumn:
                 name: template_id
                 referencedColumnName: template_id
+                options:
+                    unsigned: true
         Creator:
             targetEntity: Eccube\Entity\Member
             joinColumn:
                 name: creator_id
                 referencedColumnName: member_id
                 nullable: true
+                options:
+                    unsigned: true
     lifecycleCallbacks: {  }

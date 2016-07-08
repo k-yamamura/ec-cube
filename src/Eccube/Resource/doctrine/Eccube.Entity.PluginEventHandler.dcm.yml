@@ -6,39 +6,36 @@ Eccube\Entity\PluginEventHandler:
     id:
         id:
             type: integer
-            nullable: false
-            unsigned: false
-            id: true
             column: id
             generator:
-                strategy: IDENTITY
+                strategy: AUTO
+            options:
+                unsigned: true
     fields:
         event:
             type: string
-            nullable: false
+            length: 100
         priority:
-            type: integer
-            nullable: false
-        plugin_id:
-            type: integer
-            nullable: false
-        del_flg:
             type: smallint
-            nullable: false
             options:
+                unsigned: true
                 default: 0
         handler:
             type: string
-            nullable: false
+            length: 100
         handler_type:
             type: string
+            length: 10
             nullable: false
+        del_flg:
+            type: smallint
+            options:
+                unsigned: true
+                default: 0
         create_date:
             type: datetime
-            nullable: false
         update_date:
             type: datetime
-            nullable: false
     manyToOne:
         Plugin:
             targetEntity: Eccube\Entity\Plugin
@@ -46,5 +43,6 @@ Eccube\Entity\PluginEventHandler:
             joinColumn:
                 name: plugin_id
                 referencedColumnName: plugin_id
-
+                options:
+                    unsigned: true
     lifecycleCallbacks: {  }

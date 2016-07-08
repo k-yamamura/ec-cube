@@ -9,77 +9,91 @@ Eccube\Entity\Customer:
     id:
         id:
             type: integer
-            nullable: false
-            unsigned: false
-            id: true
             column: customer_id
             generator:
                 strategy: AUTO
+            options:
+                unsigned: true
     fields:
         name01:
-            type: text
-            nullable: false
+            type: string
+            length: 100
         name02:
-            type: text
-            nullable: false
+            type: string
+            length: 100
         kana01:
-            type: text
+            type: string
+            length: 100
             nullable: true
         kana02:
-            type: text
+            type: string
+            length: 100
             nullable: true
         company_name:
-            type: text
+            type: string
+            length: 100
             nullable: true
         zip01:
-            type: text
+            type: string
+            length: 3
             nullable: true
         zip02:
-            type: text
+            type: string
+            length: 4
             nullable: true
         zipcode:
-            type: text
+            type: string
+            length: 7
             nullable: true
         addr01:
-            type: text
+            type: string
+            length: 100
             nullable: true
         addr02:
-            type: text
+            type: string
+            length: 100
             nullable: true
         email:
-            type: text
-            nullable: false
+            type: string
+            length: 200
         tel01:
-            type: text
+            type: string
+            length: 5
             nullable: true
         tel02:
-            type: text
+            type: string
+            length: 4
             nullable: true
         tel03:
-            type: text
+            type: string
+            length: 4
             nullable: true
         fax01:
-            type: text
+            type: string
+            length: 5
             nullable: true
         fax02:
-            type: text
+            type: string
+            length: 4
             nullable: true
         fax03:
-            type: text
+            type: string
+            length: 4
             nullable: true
         birth:
             type: datetime
             nullable: true
         password:
-            type: text
+            type: string
+            length: 200
             nullable: true
         salt:
-            type: text
+            type: string
+            length: 200
             nullable: true
         secret_key:
             type: string
             length: 200
-            nullable: false
         first_buy_date:
             type: datetime
             nullable: true
@@ -92,61 +106,72 @@ Eccube\Entity\Customer:
             precision: 10
             scale: 0
             options:
-                default: '0'
+                unsigned: true
+                default: 0
         buy_total:
             type: decimal
             nullable: true
             precision: 10
             scale: 0
             options:
-                default: '0'
+                unsigned: true
+                default: 0
         note:
-            type: text
+            type: string
+            length: 500
             nullable: true
         reset_key:
-            type: text
+            type: string
+            length: 200
             nullable: true
         reset_expire:
             type: datetime
             nullable: true
-        create_date:
-            type: datetime
-            nullable: false
-        update_date:
-            type: datetime
-            nullable: false
         del_flg:
             type: smallint
-            nullable: false
-            unsigned: false
             options:
-                default: '0'
+                unsigned: true
+                default: 0
+        create_date:
+            type: datetime
+        update_date:
+            type: datetime
     manyToOne:
         Status:
             targetEntity: Eccube\Entity\Master\CustomerStatus
             joinColumn:
                 name: status
                 referencedColumnName: id
+                options:
+                    unsigned: true
         Sex:
             targetEntity: Eccube\Entity\Master\Sex
             joinColumn:
                 name: sex
                 referencedColumnName: id
+                options:
+                    unsigned: true
         Job:
             targetEntity: Eccube\Entity\Master\Job
             joinColumn:
                 name: job
                 referencedColumnName: id
+                options:
+                    unsigned: true
         Country:
             targetEntity: Eccube\Entity\Master\Country
             joinColumn:
                 name: country_id
                 referencedColumnName: id
+                options:
+                    unsigned: true
         Pref:
             targetEntity: Eccube\Entity\Master\Pref
             joinColumn:
                 name: pref
                 referencedColumnName: id
+                options:
+                    unsigned: true
     oneToMany:
         CustomerFavoriteProducts:
             targetEntity: Eccube\Entity\CustomerFavoriteProduct

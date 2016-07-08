@@ -5,48 +5,51 @@ Eccube\Entity\PageLayout:
     id:
         id:
             type: integer
-            nullable: false
-            unsigned: false
             column: page_id
             generator:
                 strategy: AUTO
+            options:
+                unsigned: true
     fields:
         name:
-            type: text
-            nullable: true
+            type: string
+            length: 100
             column: page_name
         url:
-            type: text
-            nullable: false
+            type: string
+            length: 200
         file_name:
-            type: text
+            type: string
+            length: 100
             nullable: true
         edit_flg:
             type: smallint
-            nullable: true
-            unsigned: false
             options:
-                default: '1'
+                unsigned: true
+                default: 1
         author:
-            type: text
+            type: string
+            length: 400
             nullable: true
         description:
-            type: text
+            type: string
+            length: 400
             nullable: true
         keyword:
-            type: text
+            type: string
+            length: 400
             nullable: true
         update_url:
-            type: text
+            type: string
+            length: 400
             nullable: true
         create_date:
             type: datetime
-            nullable: false
         update_date:
             type: datetime
-            nullable: false
         meta_robots:
-            type: text
+            type: string
+            length: 400
             nullable: true
     oneToMany:
         BlockPositions:
@@ -60,4 +63,6 @@ Eccube\Entity\PageLayout:
             joinColumn:
                 name: device_type_id
                 referencedColumnName: id
+                options:
+                    unsigned: true
     lifecycleCallbacks: {  }

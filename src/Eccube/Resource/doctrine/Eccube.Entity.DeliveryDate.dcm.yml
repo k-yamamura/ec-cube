@@ -5,24 +5,23 @@ Eccube\Entity\DeliveryDate:
     id:
         id:
             type: integer
-            nullable: false
-            unsigned: false
-            id: true
             column: date_id
             generator:
                 strategy: AUTO
+            options:
+                unsigned: true
     fields:
         name:
-            type: text
+            type: string
+            length: 100
             nullable: true
         value:
             type: smallint
-            nullable: false
-            unsigned: false
             options:
-                default: '0'
+                unsigned: true
+                default: 0
         rank:
-            type: smallint
-            nullable: false
-            unsigned: false
+            type: integer
+            options:
+                unsigned: true
     lifecycleCallbacks: {  }
