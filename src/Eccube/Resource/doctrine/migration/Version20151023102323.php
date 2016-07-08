@@ -103,15 +103,15 @@ class Version20151023102323 extends AbstractMigration
         $em->flush();
 
         // 文言、URLの修正
-        $this->addSql("UPDATE dtb_page_layout  SET url = 'help_agreement', file_name = 'Help/agreement' WHERE file_name = 'Entry/kiyaku';");
-        $this->addSql("UPDATE dtb_page_layout  SET url = 'shopping_shipping_multiple', file_name = 'Shopping/shipping_multiple' WHERE file_name = 'Shopping/multiple';");
-        $this->addSql("UPDATE dtb_page_layout  SET page_name = '商品購入' WHERE page_name = '商品購入/ログイン';");
-        $this->addSql("UPDATE dtb_page_layout  SET page_name = 'MYページ/お届け先一覧' WHERE page_name = 'MYページ/お届け先変更';");
-        $this->addSql("UPDATE dtb_page_layout  SET file_name = 'Mypage/delivery_edit' WHERE page_name = 'MYページ/お届け先追加';");
+        $this->addSql("UPDATE dtb_page_layout  SET url = 'help_agreement', file_name = 'Help/agreement' WHERE file_name = 'Entry/kiyaku'");
+        $this->addSql("UPDATE dtb_page_layout  SET url = 'shopping_shipping_multiple', file_name = 'Shopping/shipping_multiple' WHERE file_name = 'Shopping/multiple'");
+        $this->addSql("UPDATE dtb_page_layout  SET page_name = '商品購入' WHERE page_name = '商品購入/ログイン'");
+        $this->addSql("UPDATE dtb_page_layout  SET page_name = 'MYページ/お届け先一覧' WHERE page_name = 'MYページ/お届け先変更'");
+        $this->addSql("UPDATE dtb_page_layout  SET file_name = 'Mypage/delivery_edit' WHERE page_name = 'MYページ/お届け先追加'");
 
         // 不要なレコードを削除
-        $this->addSql("DELETE from dtb_page_layout  WHERE file_name = 'Shopping/payment';");
-        $this->addSql("DELETE from dtb_page_layout  WHERE file_name = 'Shopping/confirm';");
+        $this->addSql("DELETE from dtb_page_layout  WHERE file_name = 'Shopping/payment'");
+        $this->addSql("DELETE from dtb_page_layout  WHERE file_name = 'Shopping/confirm'");
     }
 
     /**

@@ -16,7 +16,7 @@ Eccube\Entity\Category:
             type: text
             nullable: false
             column: category_name
-        level:
+        level1:
             type: integer
             nullable: false
             unsigned: false

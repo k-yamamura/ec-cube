@@ -24,6 +24,7 @@
 
 namespace Eccube\ServiceProvider;
 
+use Doctrine\DBAL\Event\Listeners\OracleSessionInit;
 use Eccube\Application;
 use Silex\Application as BaseApplication;
 use Silex\ServiceProviderInterface;
@@ -247,6 +248,12 @@ class EccubeServiceProvider implements ServiceProviderInterface
                 // save
                 $saveEventSubscriber = new \Eccube\Doctrine\EventSubscriber\SaveEventSubscriber($app);
                 $em->getEventManager()->addEventSubscriber($saveEventSubscriber);
+
+                $em->getEventManager()->addEventSubscriber(new OracleSessionInit(array(
+                    'NLS_DATE_FORMAT' => 'RR-MM-DD',
+                    'NLS_TIME_FORMAT' => 'HH24:MI:SSXFF',
+                )));
+
 
                 // filters
                 $config = $em->getConfiguration();

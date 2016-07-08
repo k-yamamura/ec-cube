@@ -107,6 +107,7 @@ Eccube\Entity\BaseInfo:
             options:
                 default: 0
         option_mypage_order_status_display:
+            column: option_mypage_order_status_dis
             type: smallint
             nullable: true
             options:

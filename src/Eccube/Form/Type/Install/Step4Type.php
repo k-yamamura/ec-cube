@@ -57,6 +57,9 @@ class Step4Type extends AbstractType
         if (extension_loaded('pdo_sqlite')) {
             $database['pdo_sqlite'] = 'SQLite(開発者用)';
         }
+        if (extension_loaded('oci8')) {
+            $database['oci8'] = 'Oracle';
+        }
 
         $builder
             ->add('database', 'choice', array(
@@ -96,6 +99,12 @@ class Step4Type extends AbstractType
                     new Assert\Callback(array($this, 'validate')),
                 ),
             ))
+            ->add('servicename', 'text', array(
+                'label' => 'servicename',
+                'constraints' => array(
+                    new Assert\Callback(array($this, 'validate')),
+                ),
+            ))
             ->addEventListener(FormEvents::POST_SUBMIT, function ($event) {
                 $form = $event->getForm();
                 $data = $form->getData();
@@ -115,6 +124,7 @@ class Step4Type extends AbstractType
                             'host' => $data['database_host'],
                             'driver' => $data['database'],
                             'port' => $data['database_port'],
+                            'servicename' => $data['servicename'],
                         );
                     }
                     // todo MySQL, PostgreSQLのバージョンチェックも欲しい.DBALで接続すればエラーになる？

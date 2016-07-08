@@ -3,7 +3,7 @@ Eccube\Entity\OrderDetail:
     table: dtb_order_detail
     repositoryClass: Eccube\Repository\OrderDetailRepository
     indexes:
-        dtb_order_detail_product_id_key:
+        dtb_order_detail_product_key:
             columns:
                 - product_id
     id:

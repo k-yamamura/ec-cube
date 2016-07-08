@@ -398,7 +398,7 @@ class InstallController
 
         $schemaTool->dropSchema($metadatas);
 
-        $em->getConnection()->executeQuery('DROP TABLE IF EXISTS doctrine_migration_versions');
+        // $em->getConnection()->executeQuery('DROP TABLE IF EXISTS doctrine_migration_versions;');
 
         return $this;
     }
@@ -490,13 +490,13 @@ class InstallController
                 :admin_mail,
                 :admin_mail,
                 current_timestamp,
-                0);');
+                0)');
             $sth->execute(array(
                 ':shop_name' => $this->session_data['shop_name'],
                 ':admin_mail' => $this->session_data['email']
             ));
 
-            $sth = $this->PDO->prepare("INSERT INTO dtb_member (member_id, login_id, password, salt, work, del_flg, authority, creator_id, rank, update_date, create_date,name,department) VALUES (2, :login_id, :admin_pass , :salt , '1', '0', '0', '1', '1', current_timestamp, current_timestamp,'管理者','EC-CUBE SHOP');");
+            $sth = $this->PDO->prepare("INSERT INTO dtb_member (member_id, login_id, password, salt, work, del_flg, authority, creator_id, rank, update_date, create_date,name,department) VALUES (2, :login_id, :admin_pass , :salt , '1', '0', '0', '1', '1', current_timestamp, current_timestamp,'管理者','EC-CUBE SHOP')");
             $sth->execute(array(':login_id' => $this->session_data['login_id'], ':admin_pass' => $encodedPassword, ':salt' => $salt));
 
             $this->PDO->commit();
@@ -540,12 +540,12 @@ class InstallController
 
             if ($rs) {
                 // 同一の管理者IDであればパスワードのみ更新
-                $sth = $this->PDO->prepare("UPDATE dtb_member set password = :admin_pass, salt = :salt, update_date = current_timestamp WHERE login_id = :login_id;");
+                $sth = $this->PDO->prepare("UPDATE dtb_member set password = :admin_pass, salt = :salt, update_date = current_timestamp WHERE login_id = :login_id");
                 $sth->execute(array(':admin_pass' => $encodedPassword, ':salt' => $salt, ':login_id' => $this->session_data['login_id']));
 
             } else {
                 // 新しい管理者IDが入力されたらinsert
-                $sth = $this->PDO->prepare("INSERT INTO dtb_member (login_id, password, salt, work, del_flg, authority, creator_id, rank, update_date, create_date,name,department) VALUES (:login_id, :admin_pass , :salt , '1', '0', '0', '1', '1', current_timestamp, current_timestamp,'管理者','EC-CUBE SHOP');");
+                $sth = $this->PDO->prepare("INSERT INTO dtb_member (login_id, password, salt, work, del_flg, authority, creator_id, rank, update_date, create_date,name,department) VALUES (:login_id, :admin_pass , :salt , '1', '0', '0', '1', '1', current_timestamp, current_timestamp,'管理者','EC-CUBE SHOP')");
                 $sth->execute(array(':login_id' => $this->session_data['login_id'], ':admin_pass' => $encodedPassword, ':salt' => $salt));
             }
 
@@ -556,7 +556,7 @@ class InstallController
                 email03 = :admin_mail,
                 email04 = :admin_mail,
                 update_date = current_timestamp
-            WHERE id = 1;');
+            WHERE id = 1');
             $sth->execute(array(
                 ':shop_name' => $this->session_data['shop_name'],
                 ':admin_mail' => $this->session_data['email']
@@ -712,15 +712,22 @@ class InstallController
                     }
                     $data['db_driver'] = 'pdo_mysql';
                     break;
+                case 'oci8':
+                    if (empty($data['db_port'])) {
+                        $data['db_port'] = '1521';
+                    }
+                    $data['db_driver'] = 'oci8';
+                    break;
             }
-            $target = array('${DBDRIVER}', '${DBSERVER}', '${DBNAME}', '${DBPORT}', '${DBUSER}', '${DBPASS}');
+            $target = array('${DBDRIVER}', '${DBSERVER}', '${DBNAME}', '${DBPORT}', '${DBUSER}', '${DBPASS}', '${SERVICENAME}');
             $replace = array(
                 $data['db_driver'],
                 $data['database_host'],
                 $data['database_name'],
                 $data['database_port'],
                 $data['database_user'],
-                $data['database_password']
+                $data['database_password'],
+                $data['servicename'],
             );
 
             $fs = new Filesystem();

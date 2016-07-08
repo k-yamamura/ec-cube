@@ -32,7 +32,7 @@ class CategoryCount extends \Eccube\Entity\AbstractEntity
     /**
      * @var integer
      */
-    private $category_id;
+    private $id;
 
     /**
      * @var integer
@@ -50,13 +50,13 @@ class CategoryCount extends \Eccube\Entity\AbstractEntity
     private $Category;
 
     /**
-     * Get category_id
+     * Get id
      *
      * @return integer
      */
-    public function getCategoryId()
+    public function getId()
     {
-        return $this->category_id;
+        return $this->id;
     }
 
     /**

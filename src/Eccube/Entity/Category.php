@@ -98,7 +98,7 @@ class Category extends \Eccube\Entity\AbstractEntity
 
     public function getNameWithLevel()
     {
-        return str_repeat('　', $this->getLevel() - 1) . $this->getName();
+        return str_repeat('　', $this->getLevel1() - 1) . $this->getName();
     }
 
     public function getDescendants()
@@ -137,7 +137,7 @@ class Category extends \Eccube\Entity\AbstractEntity
     /**
      * @var integer
      */
-    private $level;
+    private $level1;
 
     /**
      * @var integer
@@ -237,9 +237,9 @@ class Category extends \Eccube\Entity\AbstractEntity
      * @param  integer  $level
      * @return Category
      */
-    public function setLevel($level)
+    public function setLevel1($level1)
     {
-        $this->level = $level;
+        $this->level1 = $level1;
 
         return $this;
     }
@@ -249,9 +249,9 @@ class Category extends \Eccube\Entity\AbstractEntity
      *
      * @return integer
      */
-    public function getLevel()
+    public function getLevel1()
     {
-        return $this->level;
+        return $this->level1;
     }
 
     /**
