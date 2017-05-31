@@ -188,13 +188,18 @@ class EccubeExtension extends \Twig_Extension
      * Productが取得できない場合、または非公開の場合、商品情報は表示させない。
      * デバッグ環境以外ではProductが取得できなくでもエラー画面は表示させず無視される。
      *
-     * @param $id
+     * @param int  $id
+     * @param bool $show forced to get product
      * @return Product|null
      */
-    public function getProduct($id)
+    public function getProduct($id, $show = false)
     {
         try {
             $Product = $this->app['eccube.repository.product']->get($id);
+
+            if ($show) {
+                return $Product;
+            }
 
             if ($Product->getStatus()->getId() == Disp::DISPLAY_SHOW) {
                 return $Product;
