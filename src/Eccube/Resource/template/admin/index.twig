@@ -45,6 +45,21 @@ $(function(){
 
 {% block main %}
 
+    <div id="dashboard-widgets" class="box-holder">
+        <div id="box-container-1" class="box-container">
+            {{ render(path('admin_dashboard', {'column': 1})) }}
+        </div>
+        <div id="box-container-2" class="box-container">
+            {{ render(path('admin_dashboard', {'column': 2})) }}
+        </div>
+        <div id="box-container-3" class="box-container">
+            {{ render(path('admin_dashboard', {'column': 3})) }}
+        </div>
+        <div id="box-container-4" class="box-container">
+            {{ render(path('admin_dashboard', {'column': 4})) }}
+        </div>
+    </div>
+
         <div class="row">
             <div class="col-md-6">
                 <form id="order-state" name="form1" action="{{ url('admin_order') }}" method="post">

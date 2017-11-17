@@ -181,6 +181,20 @@ class Member extends \Eccube\Entity\AbstractEntity implements UserInterface
      */
     private $Creator;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dashboard", type="text", nullable=true)
+     */
+    private $dashboard;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dashboard_hidden", type="text", nullable=true)
+     */
+    private $dashboard_hidden;
+
 
     /**
      * Get id.
@@ -478,5 +492,53 @@ class Member extends \Eccube\Entity\AbstractEntity implements UserInterface
     public function getCreator()
     {
         return $this->Creator;
+    }
+
+    /**
+     * Set dashboard
+     *
+     * @param string $dashboard
+     *
+     * @return Member
+     */
+    public function setDashboard($dashboard)
+    {
+        $this->dashboard = $dashboard;
+
+        return $this;
+    }
+
+    /**
+     * Get dashboard
+     *
+     * @return string
+     */
+    public function getDashboard()
+    {
+        return $this->dashboard;
+    }
+
+    /**
+     * Set dashboardHidden
+     *
+     * @param string $dashboardHidden
+     *
+     * @return Member
+     */
+    public function setDashboardHidden($dashboardHidden)
+    {
+        $this->dashboard_hidden = $dashboardHidden;
+
+        return $this;
+    }
+
+    /**
+     * Get dashboardHidden
+     *
+     * @return string
+     */
+    public function getDashboardHidden()
+    {
+        return $this->dashboard_hidden;
     }
 }
