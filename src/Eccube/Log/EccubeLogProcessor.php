@@ -2,8 +2,6 @@
 
 namespace Eccube\Log;
 
-use Eccube\Log\Monolog\Processor\IntrospectionProcessor;
-use Eccube\Log\Monolog\Processor\WebProcessor;
 use Monolog\Processor\UidProcessor;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -33,7 +31,6 @@ class EccubeLogProcessor
     public function processRecord(array $record)
     {
         // Processorの内容をログ出力
-        $webProcessor = new WebProcessor();
         $uidProcessor = new UidProcessor(8);
 
         $record['level_name'] = sprintf("%-5s", $record['level_name']);
@@ -46,13 +43,6 @@ class EccubeLogProcessor
         $record['user_id'] = null;
 
         $record['uid'] = $uidProcessor->getUid();
-
-        $record['url'] = $webProcessor->getRequestUri();
-        $record['urla'] = "hogehoge";
-        $record['ip'] = $webProcessor->getClientIp();
-        $record['referrer'] = $webProcessor->getReferer();
-        $record['method'] = $webProcessor->getMethod();
-        $record['user_agent'] = $webProcessor->getUserAgent();
 
         // クラス名などを一旦保持し、不要な情報は削除
         $line = $record['extra']['line'];
