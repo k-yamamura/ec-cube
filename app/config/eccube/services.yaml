@@ -90,6 +90,22 @@ services:
         tags:
           - { name: 'data_collector', template: '@toolbar/eccube.html.twig', id: 'eccube_core', priority: -512 }
 
+    monolog.formatter.eccube_log:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%] %%channel%%.%%level_name%% [%%session_id%%] [%%uid%%] [%%user_id%%] [%%class%%:%%function%%:%%line%%] - %%message%% %%context%% %%extra%% [%%method%%, %%url%%, %%ip%%, %%referrer%%, %%user_agent%%]\n"
+
+    Eccube\Log\EccubeLogProcessor:
+        tags:
+            - { name: monolog.processor, method: processRecord }
+
+    Monolog\Processor\WebProcessor:
+        tags: [monolog.processor]
+
+    Monolog\Processor\IntrospectionProcessor:
+        tags: [monolog.processor]
+
+
     # Autowiring can't guess the constructor arguments that are not type-hinted with
     # classes (e.g. container parameters) so you must define those arguments explicitly
     # Eccube\Command\ListUsersCommand:
