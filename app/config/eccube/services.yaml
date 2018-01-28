@@ -56,6 +56,18 @@ services:
         lazy: true
         public: true
 
+#    twig.extension.routing:
+#        class: Eccube\Twig\Extension\EccubeRoutingExtension
+#        public: false
+#        arguments:
+#            - '@router'
+    twig.extension.routing:
+        class: Eccube\Twig\Extension\EccubeRoutingExtension
+        arguments: ['@router']
+#        public: false
+        tags:
+            - { name: twig.extension }
+
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
     Eccube\Controller\:
