@@ -131,6 +131,14 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
+    // var l = Ladda.create(document.querySelector('.ladda-button'));
+    Ladda.bind('button[type=submit]');
+    // $('.ladda-button').click(function() {
+    //     var form = $(this).closest('form')[0];
+    //     l.start();
+        // form.submit();
+    // });
+
 /////////// 検索条件をクリア
     $('.search-clear').click(function (event) {
         event.preventDefault(event);
