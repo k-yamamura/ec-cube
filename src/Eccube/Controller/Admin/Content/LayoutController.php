@@ -28,6 +28,7 @@ use Doctrine\ORM\NoResultException;
 use Eccube\Controller\AbstractController;
 use Eccube\Entity\BlockPosition;
 use Eccube\Entity\Layout;
+use Eccube\Entity\Master\DeviceType;
 use Eccube\Form\Type\Master\DeviceTypeType;
 use Eccube\Repository\BlockRepository;
 use Eccube\Repository\LayoutRepository;
@@ -44,6 +45,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Twig\Environment as Twig;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 // todo プレビュー実装
 class LayoutController extends AbstractController
@@ -94,13 +96,17 @@ class LayoutController extends AbstractController
     /**
      * @Method("DELETE")
      * @Route("/%eccube_admin_route%/content/layout/{id}/delete", requirements={"id" = "\d+"}, name="admin_content_layout_delete")
+     *
+     * @param Layout $Layout
+     *
+     * @return RedirectResponse
      */
-    public function delete($id)
+    public function delete(Layout $Layout)
     {
         $this->isTokenValid();
 
-        $Layout = $this->layoutRepository->find($id);
-        if (!$Layout) {
+        /** @var Layout $Layout */
+        if (!$Layout->isDeletable()) {
             $this->deleteMessage();
 
             return $this->redirectToRoute('admin_content_layout');
@@ -180,6 +186,18 @@ class LayoutController extends AbstractController
 
         $form = $builder->getForm();
         $form->handleRequest($request);
+
+        if (is_null($id)) {     // admin_content_layout_new only
+            if ($deviceTypeId = $request->get('DeviceType')) {
+                if ($DeviceType = $this->entityManager->find(DeviceType::class, $deviceTypeId)) {
+                    $form['DeviceType']->setData($DeviceType);
+                } else {
+                    throw new BadRequestHttpException(trans('admin.content.layout.device_type.invalid'));
+                }
+            } else {
+                throw new BadRequestHttpException(trans('admin.content.layout.device_type.invalid'));
+            }
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Layoutの更新
