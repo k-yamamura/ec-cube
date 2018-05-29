@@ -95,6 +95,9 @@ class MailController extends AbstractController
 
         $form = $builder->getForm();
 
+        // 本文確認用
+        $body = $this->createBody('', '', $Order);
+
         if ('POST' === $request->getMethod()) {
 
             $form->handleRequest($request);
@@ -106,6 +109,15 @@ class MailController extends AbstractController
                 if ($form->get('template')->isValid()) {
                     /** @var $data \Eccube\Entity\MailTemplate */
                     $MailTemplate = $form->get('template')->getData();
+                    $data = $form->getData();
+
+                    $twig = $MailTemplate->getFileName();
+                    if (!$twig)  {
+                        $twig = 'Mail/order.twig';
+                    }
+
+                    $body = $this->createBody('', '', $Order, $twig);
+
                     $form = $builder->getForm();
                     $event = new EventArgs(
                         array(
@@ -124,17 +136,23 @@ class MailController extends AbstractController
             } else {
                 if ($form->isValid()) {
                     $data = $form->getData();
-                    $body = $this->createBody($data['mail_header'], $data['mail_footer'], $Order);
+
+                    $MailTemplate = $form->get('template')->getData();
+
+                    $twig = $MailTemplate->getFileName();
+                    if (!$twig)  {
+                        $twig = 'Mail/order.twig';
+                    }
 
                     // メール送信
-                    $this->mailService->sendAdminOrderMail($Order, $data);
+                    $message = $this->mailService->sendAdminOrderMail($Order, $data, $twig);
 
                     // 送信履歴を保存.
                     $MailTemplate = $form->get('template')->getData();
                     $MailHistory = new MailHistory();
                     $MailHistory
-                        ->setMailSubject($data['mail_subject'])
-                        ->setMailBody($body)
+                        ->setMailSubject($message->getSubject())
+                        ->setMailBody($message->getBody())
                         ->setSendDate(new \DateTime())
                         ->setOrder($Order);
 
@@ -156,9 +174,6 @@ class MailController extends AbstractController
                 }
             }
         }
-
-        // 本文確認用
-        $body = $this->createBody('', '', $Order);
 
         return [
             'form' => $form->createView(),
@@ -307,9 +322,9 @@ class MailController extends AbstractController
     }
 
 
-    private function createBody($header, $footer, $Order)
+    private function createBody($header, $footer, $Order, $twig = 'Mail/order.twig')
     {
-        return $this->renderView('@admin/Mail/order.twig', array(
+        return $this->renderView($twig, array(
             'header' => $header,
             'footer' => $footer,
             'Order' => $Order,
