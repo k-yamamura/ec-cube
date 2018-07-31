@@ -16,7 +16,6 @@ namespace Eccube\Service;
 use Eccube\Application;
 use Eccube\Common\EccubeConfig;
 use Eccube\Entity\BaseInfo;
-use Eccube\Entity\Order;
 use Eccube\Entity\OrderItem;
 use Eccube\Entity\Shipping;
 use Eccube\Repository\BaseInfoRepository;
