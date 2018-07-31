@@ -115,6 +115,7 @@ class OrderPdfControllerTest extends AbstractAdminWebTestCase
     {
         $Order = $this->createOrderForSearch();
         $orderId = $Order->getId();
+        $Shippings = $Order->getShippings();
 
         /**
          * @var Crawler
@@ -123,7 +124,7 @@ class OrderPdfControllerTest extends AbstractAdminWebTestCase
             $this->generateUrl('admin_order_export_pdf'),
             [
                 '_token' => 'dummy',
-                'ids' => [$orderId],
+                'ids' => [$Shippings[0]->getId()],
             ]);
 
         $form = $this->getForm($crawler);
@@ -250,6 +251,8 @@ class OrderPdfControllerTest extends AbstractAdminWebTestCase
     {
         $Order = $this->createOrderForSearch();
         $orderId = $Order->getId();
+        $Shippings = $Order->getShippings();
+
         /**
          * @var Client
          */
@@ -261,7 +264,7 @@ class OrderPdfControllerTest extends AbstractAdminWebTestCase
         $crawler = $client->request('POST', $this->generateUrl('admin_order_export_pdf'),
             [
                 '_token' => 'dummy',
-                'ids' => [$orderId],
+                'ids' => [$Shippings[0]->getId()],
             ]);
         $html = $crawler->filter('#order_pdf_form')->html();
         $this->assertContains((string) $orderId, $html);
@@ -285,6 +288,8 @@ class OrderPdfControllerTest extends AbstractAdminWebTestCase
     {
         $Order = $this->createOrderForSearch();
         $orderId = $Order->getId();
+        $Shippings = $Order->getShippings();
+
         /**
          * @var Client
          */
@@ -314,12 +319,12 @@ class OrderPdfControllerTest extends AbstractAdminWebTestCase
         $crawler = $client->request('POST', $this->generateUrl('admin_order_export_pdf'),
             [
                 '_token' => 'dummy',
-                'ids' => [$orderId],
+                'ids' => [$Shippings[0]->getId()],
             ]
             );
         $html = $crawler->filter('#order_pdf_form')->html();
 
-        $this->assertContains((string) $orderId, $html);
+        $this->assertContains((string) $Shippings[0]->getId(), $html);
         $this->assertContains($OrderPdf->getTitle(), $html);
         $this->assertContains($OrderPdf->getMessage1(), $html);
         $this->assertContains($OrderPdf->getMessage2(), $html);
